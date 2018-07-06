@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 require('./src/app/controllers/index')(app);
 
 //if (process.env.ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use(express.static(path.join(__dirname, 'client/build')));
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
