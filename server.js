@@ -17,12 +17,12 @@ app.use((req, res, next) => {
 
 require('./src/app/controllers/index')(app);
 
-if (process.env.NODE_ENV === 'production') {
+//if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
-}
+//}
 
 const server = app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
