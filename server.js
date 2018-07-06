@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 const io = require('socket.io')();
 
-app.set('port', process.env.PORT || 3001);
+app.set('port', process.env.PORT || 3003);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -17,12 +17,12 @@ app.use((req, res, next) => {
 
 require('./src/app/controllers/index')(app);
 
-//if (process.env.ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client', 'build')));
+//if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
-//} // so assim pra fucionar no heroku
+//}
 
 const server = app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
