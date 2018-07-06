@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 
 require('./src/app/controllers/index')(app);
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.ENV === 'production') {
   app.use(express.static('client/build'));
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
@@ -40,9 +40,5 @@ io.on('connection', (socket) => {
     socket.leave(room);
   });
 });
-
-/* const port = 8000;
-io.listen(port);
-console.log('listening on port ', port); */
 
 module.exports = app; // for testing
